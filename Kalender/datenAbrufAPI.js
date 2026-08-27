@@ -5,8 +5,9 @@ let accessToken;
 //Diese Funktion wird durch 'onload' oben aufgerufen
 function initClient() {
     try {
+        const CLIENT_ID = import.meta.env.VITE_GOOGLE_CLIENT_ID;
         tokenClient = google.accounts.oauth2.initTokenClient({
-            client_id: '765365530022-i3e8sifcnpht37gtb8imhmhur1j1tjsn.apps.googleusercontent.com',
+            client_id: CLIENT_ID,
             scope: 'https://www.googleapis.com/auth/calendar.readonly',
             callback: (tokenResponse) => {
                 if (tokenResponse && tokenResponse.access_token) {

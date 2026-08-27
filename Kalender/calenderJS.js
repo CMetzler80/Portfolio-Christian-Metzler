@@ -1,6 +1,6 @@
 
 
-
+const DEMO_MODUS = import.meta.env.VITE_DEMO_MODUS === 'true';
 
 let chrisDataArray = [];
 
@@ -14,6 +14,19 @@ let aktuellerMonat = aktuellesDatum.getMonth();
 let aktuellesJahr = aktuellesDatum.getFullYear();
 
 function ausgabeKalenderChris() {
+
+     if (DEMO_MODUS) {
+          //Beispieldaten verwenden
+          chrisDataArray = demoDaten.map(event => ({
+               startMS: new Date(event.start).getTime(),
+               endMS: new Date(event.end).getTime(),
+               start: event.start,
+               end: event.end,
+               title: event.title,
+          }));
+          console.log("DEMO-MODUS aktiv keine echten Daten");
+          return;
+     }
 
      //Aufruf vom localStorage
      const chrisDataString = localStorage.getItem('Daten')
@@ -45,16 +58,16 @@ function ausgabeMonat() {
      //aktuelles Jahr und Monat schreiben
      let jahrAkt = document.getElementById('jahrAktuell')
      jahrAkt.innerHTML = aktuellesJahr;
-    
+
      let monatAkt = document.getElementById('monatAktuell');
      monatAkt.innerHTML = monatsNamen[aktuellerMonat];
 
      let letzterTagMonat = new Date(aktuellesJahr, aktuellerMonat + 1, 0).getDate();
-    
+
      //Start Wochentag (0=Montag)
      let ersterTag = new Date(aktuellesJahr, aktuellerMonat, 1).getDay();
      ersterTag = ersterTag === 0 ? 6 : ersterTag - 1;
-     
+
      //Calender Reset
      let calenderBody = document.getElementById('calenderBody');
      calenderBody.innerHTML = '';
@@ -64,7 +77,7 @@ function ausgabeMonat() {
           const divLeer = document.createElement('div');
           divLeer.className = 'calenderDayDivLeer';
           calenderBody.appendChild(divLeer);
-          
+
      }
 
      //restliche Felder erstellen
@@ -73,11 +86,12 @@ function ausgabeMonat() {
           let dayDiv = document.createElement('div');
           dayDiv.className = 'calendarDayDiv';
           calenderBody.appendChild(dayDiv);
-         
+
           //Click event für Tagesansicht
-          dayDiv.addEventListener('click', () => {dayDiv.classList.toggle('expanded')
-               });
-          
+          dayDiv.addEventListener('click', () => {
+               dayDiv.classList.toggle('expanded')
+          });
+
 
 
 
@@ -146,7 +160,7 @@ prevMonthButton.addEventListener('click', () => {
 })
 
 
- 
+
 
 
 
