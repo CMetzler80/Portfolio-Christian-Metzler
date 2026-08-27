@@ -1,4 +1,4 @@
-
+import { demoDaten } from './demoDaten.js';
 
 const DEMO_MODUS = import.meta.env.VITE_DEMO_MODUS === 'true';
 
@@ -45,10 +45,11 @@ function ausgabeKalenderChris() {
      }));
 
      console.log('erforderliche Daten im Array: ', chrisDataArray);
+     ausgabeMonat();
 
 }
 
-ausgabeKalenderChris()
+
 
 
 
@@ -132,7 +133,7 @@ function ausgabeMonat() {
      }
 }
 
-ausgabeMonat();
+
 
 
 //Next Month Button

@@ -1,6 +1,6 @@
 // demoDaten.js – Gefälschte Termine für die Demo
 
-const demoDaten = [
+export const demoDaten = [
   {
     title: "Team Meeting",
     start: "2026-08-27T09:00:00",
