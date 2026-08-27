@@ -6,7 +6,7 @@ der Kalender ruft über die Google Kalender API die Kalendereinträge von meinen
 
 abrufbar über https://cmetzler80.github.io/Christian-Kalender/ mit den echten Kalender Daten
 
-oder über Netifly mit demo Kalender Daten <kalender-christian.netlify.app>
+oder über Netifly mit demo Kalender Daten <https://kalender-christian.netlify.app>
 
 
 
