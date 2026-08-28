@@ -25,9 +25,10 @@ function ausgabeKalenderChris() {
                title: event.title,
           }));
           console.log("DEMO-MODUS aktiv keine echten Daten");
+          ausgabeMonat();
           return;
      }
-
+    /* 
      //Aufruf vom localStorage
      const chrisDataString = localStorage.getItem('Daten')
 
@@ -46,7 +47,7 @@ function ausgabeKalenderChris() {
 
      console.log('erforderliche Daten im Array: ', chrisDataArray);
      ausgabeMonat();
-
+*/
 }
 
 
@@ -133,7 +134,9 @@ function ausgabeMonat() {
      }
 }
 
-
+document.getElementById('ladeButton').addEventListener('click', () => {
+     ausgabeKalenderChris();
+     });
 
 
 //Next Month Button
@@ -159,7 +162,7 @@ prevMonthButton.addEventListener('click', () => {
      }
      ausgabeMonat();
 })
-
+ausgabeMonat();
 
 
 
