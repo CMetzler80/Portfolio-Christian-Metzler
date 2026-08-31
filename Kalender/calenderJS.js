@@ -1,6 +1,6 @@
 import { demoDaten } from './demoDaten.js';
 
-const DEMO_MODUS = import.meta.env.VITE_DEMO_MODUS === 'true';
+const DEMO_MODUS = 'true';
 
 let chrisDataArray = [];
 
