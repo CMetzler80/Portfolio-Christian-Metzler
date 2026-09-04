@@ -2,11 +2,8 @@
 Kalender Christian Metzler
 
 ## Beschreibung
-der Kalender ruft über die Google Kalender API die Kalendereinträge von meinen Smartphone Kalender ab und 
-
-abrufbar über https://cmetzler80.github.io/Christian-Kalender/ mit den echten Kalender Daten
-
-oder über Netifly mit demo Kalender Daten <https://kalender-christian.netlify.app>
+Der Kalender ruft über die Google Kalender API die Kalendereinträge von meinen Smartphone Kalender ab. Dargestellt wird der Kalender auf Netlify und mit Demo Daten.
+Abrufbar unter <https://kalender-christian.netlify.app>
 
 
 
