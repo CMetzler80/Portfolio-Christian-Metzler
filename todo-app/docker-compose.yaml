@@ -1,21 +1,18 @@
 # docker-compose.yaml
-version: "3.8"
 
 services:
-# container für die Todo-app
-app:
-    build: .                    # Dockerfile im selben Ordner verwenden
+  app:
+    build: .
     container_name: meine_app
     restart: always
     ports:
-      - "3000:3000"             # localhost:3000 öffnen
+      - "3000:3000"
     environment:
       DATABASE_URL: mysql://root:root@mysql:3306/projekt_db
     depends_on:
-      - mysql                   # Erst MySQL starten, dann die App 
+      - mysql
 
-# container für die MySql Datenbank  
-mysql:
+  mysql:
     image: mysql:8.0
     container_name: mysql_db
     restart: always
