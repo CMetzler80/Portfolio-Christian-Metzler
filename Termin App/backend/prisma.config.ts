@@ -9,6 +9,9 @@ export default defineConfig({
     path: "prisma/migrations",
   },
   datasource: {
-    url: process.env["DATABASE_URL"],
+    url:
+      (globalThis as typeof globalThis & {
+        process?: { env?: Record<string, string | undefined> };
+      }).process?.env?.DATABASE_URL ?? "",
   },
 });

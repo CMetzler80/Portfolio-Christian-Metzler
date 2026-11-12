@@ -22,3 +22,4 @@ reservieren. Der Admin verwaltet alle Buchungen in einer Übersicht.
 
 - Installation von next.js , React und Express abgeschlossen.
 - nächster Schritt ist die Umsetzung
+- die erste Page ist erstellt
