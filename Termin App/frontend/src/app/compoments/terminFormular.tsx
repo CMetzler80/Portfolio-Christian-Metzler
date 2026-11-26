@@ -1,26 +1,47 @@
 import { useState } from "react";
 import { SyntheticEvent } from 'react';
 
-type Props = {
-    onClose: () => void;
+
+
+
+// Define the Termin type typescript
+type Termin = {
+    id: string;
+    title: string;
+    start: string;
+    end: string;
 };
 
-const FormularToggel = ({ onClose }: Props) => {
+type Props = {
+    onClose: () => void;
+    onSave: (termin: Termin) => void;
+};
 
-    // State to manage the visibility of the form (false = hidden, true = visible)
-    const [istOffen, setIstOffen] = useState(false);
+const Formular = ({ onClose, onSave }: Props) => {
 
-    // Function to toggle the visibility of the form
-    /*const toggleFormular = () => {
-        setIstOffen(!istOffen);
-    };*/
+    
+    // States für die Formularfelder
+    const [title, setTitle] = useState("");
+    const [start, setStart] = useState("");
+    const [end, setEnd] = useState("");
 
+    //Function to handle form submission
     const handleSubmit = (e: SyntheticEvent<HTMLFormElement>) => {
         e.preventDefault(); // 1. Neuladen verhindern
         console.log('Formular wurde abgeschickt!'); // 2. Daten verarbeiten
-        setIstOffen(false); // 3. Formular wieder schließen
         onClose(); // 4. Callback-Funktion aufrufen, um den Zustand in der übergeordneten Komponente zu aktualisieren
+
+        const neuerTermin: Termin = {
+            id: crypto.randomUUID(),
+            title: title,
+            start: start,
+            end: end,
+        };
+
+        onSave(neuerTermin); // Termin nach oben melden in d
+        onClose();           // Formular schließen
     };
+        
 
     const styles: Record<string, React.CSSProperties> = {
         overlay: {
@@ -45,16 +66,34 @@ const FormularToggel = ({ onClose }: Props) => {
 
     return (
         <div style={styles.overlay}>
-            <h2>Neuen Termin erstellen</h2>
+           
             <form style={styles.modal} onSubmit={handleSubmit}>
-                <input type="text" placeholder="Termin" required />
-                <input type="datetime-local" required placeholder="Termin Anfang" />
-                <input type="datetime-local" required placeholder="Termin Ende" />
+                <h2>Neuen Termin erstellen</h2>
+                <input type="text"
+                    placeholder="Termin"
+                    value={title}
+                    required
+                    onChange={(e) => setTitle(e.target.value)}
+                />
+
+                <input type="datetime-local"
+                    placeholder="Termin Anfang"
+                    value={start}
+                    onChange={(e) => setStart(e.target.value)}
+                    required
+                />
+
+                <input type="datetime-local"
+                    placeholder="Termin Ende"
+                    value={end}
+                    onChange={(e) => setEnd(e.target.value)}
+                    required
+                />
+
                 <button type="submit">Termin erstellen</button>
             </form>
         </div>
-    )
-    
+    );
 }
 
-export default FormularToggel;
+export default Formular;

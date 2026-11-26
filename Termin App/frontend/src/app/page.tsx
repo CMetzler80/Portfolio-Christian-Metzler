@@ -5,24 +5,12 @@ import FullCalendar from "@fullcalendar/react";
 import themePlugin from "@fullcalendar/react/themes/monarch"; // YOUR THEME
 import dayGridPlugin from "@fullcalendar/react/daygrid";
 import timeGridPlugin from "@fullcalendar/react/timegrid";
-import FormularToggel from "./compoments/terminFormular";
+import Formular from "./compoments/terminFormular";
 
 // stylesheets
 import '@fullcalendar/react/skeleton.css'; // ALWAYS NEED SKELETON
 import '@fullcalendar/react/themes/monarch/theme.css'; // YOUR THEME
 import '@fullcalendar/react/themes/monarch/palettes/purple.css'; // YOUR THEME'S PALETTE
-
-// Define the Termin type typescript
-type Termin = {
-    id: string;
-    title: string;
-    start: string;
-    end: string;
-};
-
-type Props = {
-    onClose: () => void;
-};
 
 
 
@@ -32,16 +20,28 @@ const headerToolbar = {
     end: 'dayGridMonth,timeGridWeek,timeGridDay' //rechte Seite auf der Toolbar
 };
 
+type Termin = {
+    id: string;
+    title: string;
+    start: string;
+    end: string;
+};
+
 
 const Calendar = () => {
 
 
     // State to manage the visibility of the form (false = hidden, true = visible)
     const [istOffen, setIstOffen] = useState(false);
-
     const [termine, setTermine] = useState<Termin[]>([
-        { id: "1", title: "Beratung", start: "2026-11-16T10:00:00", end: "2026-11-16T11:00:00" },
+        { id: "1", title: "Beratung", start: "2026-11-16T10:00:00", end: "2026-11-16T15:00:00" },
     ]);
+
+    // Diese Funktion bekommt das Formular
+    const handleSave = (neuerTermin: Termin) => {
+        setTermine((alleTermine) => [...alleTermine, neuerTermin]);
+        console.log('Neuer Termin hinzugefügt:', neuerTermin);
+    };
 
     const buttons = {
         myCustomButton: {
@@ -50,7 +50,7 @@ const Calendar = () => {
         },
     }
 
-
+    console.log('Aktuelle Termine:', termine);
     return (
         <div>
 
@@ -65,7 +65,9 @@ const Calendar = () => {
                     headerToolbar={headerToolbar}
                 />
 
-                {istOffen && <FormularToggel onClose={() => setIstOffen(false)} />}
+                {istOffen && <Formular 
+                                onClose={() => setIstOffen(false)}
+                                onSave={handleSave} />}
 
             </main>
         </div >
